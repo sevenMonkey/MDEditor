@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDEditer</title>
+  <link rel="stylesheet" href="css/typo.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="content">
+    <div class="textEditer">
+      <textarea id="mdtext" class="textInput" oninput="this.editer.update()">
+      </textarea>
+    </div>
+    <div id="preview" class="preview"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+  <script type="text/javascript">
+
+      function MDediter(content, preview) {
+        this.update = function() {
+          preview.innerHTML = marked(content.value);
+        };
+        content.editer = this;
+      }
+
+      var $ = function(id) {
+        return document.getElementById(id)
+      }
+      
+      new MDediter($('mdtext'), $('preview')) 
+  </script>
+</body>
+</html>
